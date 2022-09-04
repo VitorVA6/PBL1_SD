@@ -10,9 +10,6 @@
 .equ setregoffset, 28
 .equ clrregoffset, 40
 
-@00111110011111111001000001111111
-@00111010011111111001000001111111
-
 .global _start
 
 .macro setOut pin
@@ -29,6 +26,28 @@
         lsl r0, r3 
         orr r1, r0 
         str r1, [r8, r2]
+.endm
+
+.macro setZero pin
+    mov r2, r8
+    add r2, #clrregoffset
+    mov r0, #1
+    ldr r3, =/pin
+    add r3, #8
+    ldr r3, [r3]
+    lsl r0, #r3
+    str r0, [r2]
+.endm
+
+.macro setOne pin
+    mov r2, r8
+    add r2, #setregoffset
+    mov r0, #1
+    ldr r3, =/pin
+    add r3, #8
+    ldr r3, [r3]
+    lsl r0, #r3
+    str r0, [r2]
 .endm
 
 _start:
@@ -49,27 +68,13 @@ _start:
     mov r7, #sys_map
     swi 0
     movs r8, r0 
-    mov r1, #0x36000000
-    orr r1, #0x00f90000
-    orr r1, #0x00009100
-    orr r1, #0x000000ff
 
-check:
-    @carrega oq tá armazenado nos registradores de level
-    ldr r9, [r8, #reg_lvl]
-    @compara com o valor esperado caso seja pressionado
-    cmp r9, r1
-    @caso seja igual volta a verificar
-    beq check
-
-setOut pin6
-
-setOn:
-    mov r2, r8
-    add r2, #clrregoffset
-    mov r0, #1
-    lsl r0, #6
-    str r0, [r2]
+    setOut rs
+    setOut e
+    setOut db4
+    setOut db5
+    setOut db6
+    setOut db7
 
 delay:
     ldr r0, =timespec
@@ -77,7 +82,7 @@ delay:
     mov r7, #162
     swi 0
 
-setOff:
+setZero:
     mov r2, r8
     add r2, #setregoffset
     mov r0, #1
@@ -94,5 +99,22 @@ fileName: .asciz "/dev/mem"
 gpioaddr: .word 0x20200
 timespec: .word 0
 timespecnano: .word 100000000
-pin6: .word 0
-      .word 18
+rs:  .word 8
+     .word 15
+     .word 25
+e:   .word 0
+     .word 3
+     .word 1
+db4: .word 4
+     .word 6
+     .word 12
+db5: .word 4
+     .word 18
+     .word 16
+db6: .word 8
+     .word 0
+     .word 20
+db7: .word 8
+     .word 3
+     .word 21
+     
