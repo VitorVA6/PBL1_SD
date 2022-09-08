@@ -32,10 +32,10 @@
     mov r2, r8
     add r2, #clrregoffset
     mov r0, #1
-    ldr r3, =/pin
+    ldr r3, =\pin
     add r3, #8
     ldr r3, [r3]
-    lsl r0, #r3
+    lsl r0, r3
     str r0, [r2]
 .endm
 
@@ -43,11 +43,18 @@
     mov r2, r8
     add r2, #setregoffset
     mov r0, #1
-    ldr r3, =/pin
+    ldr r3, =\pin
     add r3, #8
     ldr r3, [r3]
-    lsl r0, #r3
+    lsl r0, r3
     str r0, [r2]
+.endm
+
+.macro delay timespecnano
+    ldr r0, =timespecsec
+    ldr r1, =\timespecnano
+    mov r7, #162
+    swi 0
 .endm
 
 _start:
@@ -67,8 +74,9 @@ _start:
     mov r0, #0
     mov r7, #sys_map
     swi 0
-    movs r8, r0 
+    movs r8, r0
 
+mapping_lcd:    
     setOut rs
     setOut e
     setOut db4
@@ -76,18 +84,136 @@ _start:
     setOut db6
     setOut db7
 
-delay:
-    ldr r0, =timespec
-    ldr r1, =timespecnano
-    mov r7, #162
-    swi 0
+init_lcd:
+    
+    setZero e
+    setZero rs
+    setOne e 
+    setZero db7
+    setZero db6
+    setOne db5
+    setOne db4
+    setZero e
+    delay timespecnano5
+    
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setOne db5
+    setOne db4
+    setZero e
+    delay timespecnano150
+    
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setOne db5
+    setOne db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setOne db5
+    setZero db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setOne db5
+    setZero db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setOne db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e
 
-setZero:
-    mov r2, r8
-    add r2, #setregoffset
-    mov r0, #1
-    lsl r0, #6
-    str r0, [r2]
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setOne db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e
+   
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setOne db6
+    setOne db5
+    setOne db4
+    setZero e
+   
+write_lcd:
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e 
+
+    setZero e
+    setZero rs
+    setOne e
+    setOne db7
+    setOne db6
+    setOne db5
+    setZero db4
+    setZero e 
 
 end:
     mov r7, #1
@@ -97,8 +223,10 @@ end:
 flags:	.word O_RDWR + O_SYNC
 fileName: .asciz "/dev/mem"
 gpioaddr: .word 0x20200
-timespec: .word 0
-timespecnano: .word 100000000
+timespecsec: .word 0
+timespecnano20: .word 20000000
+timespecnano5: .word 5000000
+timespecnano150: .word 150000
 rs:  .word 8
      .word 15
      .word 25
