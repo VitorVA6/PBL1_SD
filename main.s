@@ -123,6 +123,7 @@ init_lcd:
     setOne db5
     setZero db4
     setZero e
+    delay timespecnano150
    
     setZero e
     setZero rs
@@ -141,6 +142,7 @@ init_lcd:
     setZero db5
     setZero db4
     setZero e
+    delay timespecnano150
    
     setZero e
     setZero rs
@@ -159,6 +161,7 @@ init_lcd:
     setZero db5
     setZero db4
     setZero e
+    delay timespecnano150
 
     setZero e
     setZero rs
@@ -177,6 +180,7 @@ init_lcd:
     setZero db5
     setOne db4
     setZero e
+    delay timespecnano150
    
     setZero e
     setZero rs
@@ -195,6 +199,7 @@ init_lcd:
     setOne db5
     setOne db4
     setZero e
+    delay timespecnano150
    
 write_lcd:
     setZero e
@@ -212,8 +217,30 @@ write_lcd:
     setOne db7
     setOne db6
     setOne db5
+    setOne db4
+    setZero e
+    delay timespecnano150
+
+    setZero e
+    setOne rs
+    setOne e
+    setZero db7
+    setOne db6
+    setZero db5
     setZero db4
     setZero e 
+
+    setZero e
+    setOne rs
+    setOne e
+    setOne db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e
+    delay timespecnano150
+    
+    
 
 end:
     mov r7, #1
