@@ -200,8 +200,12 @@ init_lcd:
     setOne db4
     setZero e
     delay timespecnano150
+
+    b 1f
+    .ltorg 
    
-write_lcd:
+1:
+
     setZero e
     setZero rs
     setOne e
@@ -217,7 +221,26 @@ write_lcd:
     setOne db7
     setOne db6
     setOne db5
-    setOne db4
+    setZero db4
+    setZero e
+    delay timespecnano150
+
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setZero db6
+    setZero db5
+    setZero db4
+    setZero e 
+
+    setZero e
+    setZero rs
+    setOne e
+    setZero db7
+    setOne db6
+    setOne db5
+    setZero db4
     setZero e
     delay timespecnano150
 
@@ -238,9 +261,6 @@ write_lcd:
     setZero db5
     setZero db4
     setZero e
-    delay timespecnano150
-    
-    
 
 end:
     mov r7, #1
@@ -272,4 +292,3 @@ db6: .word 8
 db7: .word 8
      .word 3
      .word 21
-     
