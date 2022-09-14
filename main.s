@@ -10,6 +10,14 @@
 .equ setregoffset, 28
 .equ clrregoffset, 40
 
+@0 -- 0
+@1 -- 8
+@2 -- 4
+@3 -- <
+@4 -- 2
+
+@0001 -- 1000
+
 .global _start
 
 .macro setOut pin
@@ -28,9 +36,14 @@
         str r1, [r8, r2]
 .endm
 
-.macro setZero pin
+.macro setLvl pin, lvl
+    mov r0, #40
+    mov r2, #12
+    mov r1, \lvl
+    mul r5, r1, r2
+    sub r0, r0, r5 
     mov r2, r8
-    add r2, #clrregoffset
+    add r2, r2, r0
     mov r0, #1
     ldr r3, =\pin
     add r3, #8
@@ -39,15 +52,96 @@
     str r0, [r2]
 .endm
 
-.macro setOne pin
+.macro setLcd lvlrs, lvldb7, lvldb6, lvldb5, lvldb4
+    setLvl e, #0
+    setLvl rs, #\lvlrs
+    setLvl e, #1
+    setLvl db7, #\lvldb7
+    setLvl db6, #\lvldb6
+    setLvl db5, #\lvldb5
+    setLvl db4, #\lvldb4
+    setLvl e, #0
+
+.endm 
+
+.macro timer val
+
+    setLvl e, #0
+    setLvl rs, #1
+    setLvl e, #1
+    mov r10, \val
+	mov r9, #1
+	and r11, r9, r10
+	
+    mov r0, #40
+    mov r2, #12
+    mov r1, r11
+    mul r5, r1, r2
+    sub r0, r0, r5 
     mov r2, r8
-    add r2, #setregoffset
+    add r2, r2, r0
     mov r0, #1
-    ldr r3, =\pin
+    ldr r3, =db4
     add r3, #8
     ldr r3, [r3]
     lsl r0, r3
     str r0, [r2]
+	
+	lsl r9, #1
+	and r11, r9, r10
+	lsr r11, #1
+
+	mov r0, #40
+    mov r2, #12
+    mov r1, r11
+    mul r5, r1, r2
+    sub r0, r0, r5 
+    mov r2, r8
+    add r2, r2, r0
+    mov r0, #1
+    ldr r3, =db5
+    add r3, #8
+    ldr r3, [r3]
+    lsl r0, r3
+    str r0, [r2]
+	
+	lsl r9, #1
+	and r11, r9, r10
+	lsr r11, #2
+
+	mov r0, #40
+    mov r2, #12
+    mov r1, r11
+    mul r5, r1, r2
+    sub r0, r0, r5 
+    mov r2, r8
+    add r2, r2, r0
+    mov r0, #1
+    ldr r3, =db6
+    add r3, #8
+    ldr r3, [r3]
+    lsl r0, r3
+    str r0, [r2]
+	
+	lsl r9, #1
+	and r11, r9, r10
+	lsr r11, #3
+
+	mov r0, #40
+    mov r2, #12
+    mov r1, r11
+    mul r5, r1, r2
+    sub r0, r0, r5 
+    mov r2, r8
+    add r2, r2, r0
+    mov r0, #1
+    ldr r3, =db7
+    add r3, #8
+    ldr r3, [r3]
+    lsl r0, r3
+    str r0, [r2]
+
+    setLvl e, #0
 .endm
 
 .macro delay timespecnano
@@ -83,184 +177,82 @@ mapping_lcd:
     setOut db5
     setOut db6
     setOut db7
-
-init_lcd:
-    
-    setZero e
-    setZero rs
-    setOne e 
-    setZero db7
-    setZero db6
-    setOne db5
-    setOne db4
-    setZero e
-    delay timespecnano5
-    
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setOne db5
-    setOne db4
-    setZero e
-    delay timespecnano150
-    
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setOne db5
-    setOne db4
-    setZero e
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setOne db5
-    setZero db4
-    setZero e
-    delay timespecnano150
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setOne db5
-    setZero db4
-    setZero e
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e
-    delay timespecnano150
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e
-   
-    setZero e
-    setZero rs
-    setOne e
-    setOne db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e
-    delay timespecnano150
-
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setOne db4
-    setZero e
-    delay timespecnano150
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e
-   
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setOne db6
-    setOne db5
-    setOne db4
-    setZero e
-    delay timespecnano150
-
     b 1f
     .ltorg 
-   
+
 1:
-
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e 
-
-    setZero e
-    setZero rs
-    setOne e
-    setOne db7
-    setOne db6
-    setOne db5
-    setZero db4
-    setZero e
+    
+    setLcd 0, 0, 0, 1, 1
+    delay timespecnano5
+    
+    setLcd 0, 0, 0, 1, 1
+    delay timespecnano150
+    
+    setLcd 0, 0, 0, 1, 1
+   
+    setLcd 0, 0, 0, 1, 0
     delay timespecnano150
 
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e 
+    b 2f
+    .ltorg 
 
-    setZero e
-    setZero rs
-    setOne e
-    setZero db7
-    setOne db6
-    setOne db5
-    setZero db4
-    setZero e
+2:   
+    setLcd 0, 0, 0, 1, 0
+   
+    setLcd 0, 0, 0, 0, 0
+    delay timespecnano150
+   
+    setLcd 0, 0, 0, 0, 0
+
+    setLcd 0, 1, 0, 0, 0
     delay timespecnano150
 
-    setZero e
-    setOne rs
-    setOne e
-    setZero db7
-    setOne db6
-    setZero db5
-    setZero db4
-    setZero e 
+    setLcd 0, 0, 0, 0, 0
+   
+    setLcd 0, 0, 0, 0, 1
+    delay timespecnano150
+   
+    setLcd 0, 0, 0, 0, 0
+   
+    setLcd 0, 0, 1, 1, 0
+    delay timespecnano150
 
-    setZero e
-    setOne rs
-    setOne e
-    setOne db7
-    setZero db6
-    setZero db5
-    setZero db4
-    setZero e
+    b 3f
+    .ltorg 
+   
+3:
+
+    setLcd 0, 0, 0, 0, 0
+    setLcd 0, 1, 1, 1, 0
+    delay timespecnano150
+
+    setLcd 0, 0, 0, 0, 0
+    setLcd 0, 0, 1, 1, 0
+    delay timespecnano150
+
+    mov r4, #9
+    
+
+contador:
+    mov r12, #0xfffffff
+
+    setLcd 0, 0, 0, 0, 0
+   
+    setLcd 0, 0, 0, 0, 1
+    delay timespecnano150
+
+    setLcd 1, 0, 0, 1, 1
+    timer r4
+    sub r4, #1
+    cmp r4, #0
+    bne atraso 
+    b end
+
+atraso:
+    sub r12, #1
+    cmp r12, #0
+    bne atraso 
+    b contador
 
 end:
     mov r7, #1

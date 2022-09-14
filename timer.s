@@ -56,25 +56,23 @@ _start:
     mov r7, #sys_map
     swi 0
     movs r8, r0 
-    mov r12, #0x3a000000
-    orr r12, #0x00fb0000
-    orr r12, #0x00009100
-    orr r12, #0x000000ff
+    mov r5, #1
+    lsl r5, #5
+    mov r6, #1
+    lsl r6, #26
     mov r10, #9
     ldr r1, =message
-    mov r11, #0xfffffff
-
-debounce2:
-    delay
+    mov r11, #0xffffff
 
 check:
     ldr r9, [r8, #reg_lvl]
-    cmp r9, r12
-    bne debounce
+    and r9, r9, r6
+    cmp r9, #0
+    beq atraso
     b check
 
 print:
-    mov r11, #0xfffffff
+    mov r11, #0xffffff
     mov r0, #1
     mov r2, #2
     mov r7, #4
@@ -88,12 +86,11 @@ print:
     mov r7, #1
     swi 0
 
-debounce:
-    delay
 atraso:
     ldr r9, [r8, #reg_lvl]
-    cmp r9, r12
-    bne debounce2
+    and r9, r9, r5
+    cmp r9, #0
+    beq check
     sub r11, #1
     cmp r11, #0
     bne atraso 
