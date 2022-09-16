@@ -71,11 +71,10 @@
     setLvl e, #1
     mov r10, \val
 	mov r9, #1
-	and r11, r9, r10
+	and r1, r9, r10
 	
     mov r0, #40
     mov r2, #12
-    mov r1, r11
     mul r5, r1, r2
     sub r0, r0, r5 
     mov r2, r8
@@ -88,12 +87,11 @@
     str r0, [r2]
 	
 	lsl r9, #1
-	and r11, r9, r10
-	lsr r11, #1
+	and r1, r9, r10
+	lsr r1, #1
 
 	mov r0, #40
     mov r2, #12
-    mov r1, r11
     mul r5, r1, r2
     sub r0, r0, r5 
     mov r2, r8
@@ -106,12 +104,11 @@
     str r0, [r2]
 	
 	lsl r9, #1
-	and r11, r9, r10
-	lsr r11, #2
+	and r1, r9, r10
+	lsr r1, #2
 
 	mov r0, #40
     mov r2, #12
-    mov r1, r11
     mul r5, r1, r2
     sub r0, r0, r5 
     mov r2, r8
@@ -124,12 +121,11 @@
     str r0, [r2]
 	
 	lsl r9, #1
-	and r11, r9, r10
-	lsr r11, #3
+	and r1, r9, r10
+	lsr r1, #3
 
 	mov r0, #40
     mov r2, #12
-    mov r1, r11
     mul r5, r1, r2
     sub r0, r0, r5 
     mov r2, r8
@@ -231,10 +227,18 @@ mapping_lcd:
     delay timespecnano150
 
     mov r4, #9
-    
+    mov r12, #0x1ffffff
+check:
+    mov r6, #1
+    lsl r6, #26
+    ldr r9, [r8, #reg_lvl]
+    and r9, r9, r6
+    cmp r9, #0
+    beq atraso
+    b check
 
 contador:
-    mov r12, #0xfffffff
+    mov r12, #0x1ffffff
 
     setLcd 0, 0, 0, 0, 0
    
@@ -249,6 +253,12 @@ contador:
     b end
 
 atraso:
+    mov r5, #1
+    lsl r5, #5
+    ldr r9, [r8, #reg_lvl]
+    and r9, r9, r5
+    cmp r9, #0
+    beq check
     sub r12, #1
     cmp r12, #0
     bne atraso 
