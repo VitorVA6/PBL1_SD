@@ -10,14 +10,6 @@
 .equ setregoffset, 28
 .equ clrregoffset, 40
 
-@0 -- 0
-@1 -- 8
-@2 -- 4
-@3 -- <
-@4 -- 2
-
-@0001 -- 1000
-
 .global _start
 
 .macro setOut pin
