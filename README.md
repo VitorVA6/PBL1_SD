@@ -6,8 +6,8 @@
         O sistema é composto por duas partes principais: 
     </p>
     <ul>
-		<li><p>Raspberry Pi Zero: Módulo responsável pela requisição de medição, usando Linguagem C e Assembly na implementação da UART desenvolvida ainda no <a href="https://github.com/amandassa/sensor-via-uart/tree/main/Problema%201">Problema 1</a>;</p></li>
-		<li><p>FPGA: Implementação em Verilog da UART para comunicação serial e dos módulos de ativação e comunicação com o sensor.</p></li>
+		<li><p>Raspberry Pi Zero: Módulo responsável pela requisição de medição, usando Linguagem Assembly ;</p></li>
+		<li><p>FPGA</p></li>
 	</ul>	
 </div>
 
@@ -72,17 +72,5 @@
 </div>
 
 <div id="anexos">
-	<h1> Anexos </h1>
-    <div id="raspberry-pi-zero" style="display: inline_block" align="center">
-			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/raspberry.jpg"/><br>
-		<p>
-		<b>Imagem 06</b> - Placa Raspberry Pi Zero. <b>Fonte:</b> <a href="https://www.embarcados.com.br/raspberry-pi-zero-o-computador-de-5-dolares/">Embarcados</a>
-		</p>
-	</div>
-	<div id="fpga" style="display: inline_block" align="center">
-			<img src="https://github.com/amandassa/sensor-via-uart/blob/main/Problema%202/imagens/KitMERCURIO.png"/><br>
-		<p>
-		<b>Imagem 07</b> - Kit de Desenvolvimento Altera FPGA Mercurio IV. <b>Fonte:</b> <a href="https://wiki.sj.ifsc.edu.br/index.php/Pinagem_dos_dispositivos_de_entrada_e_sa%C3%ADda_do_kit_MERCURIO_IV">IFSC</a>
-		</p>
-	</div>	
+		
 </div>
