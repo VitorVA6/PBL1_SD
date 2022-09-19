@@ -37,18 +37,36 @@ subBCD_NoOverFlow:
 	bne subBCDb
 	
 	mov r1, r0
-	mov r10, r1 
+	
+	and r10, r1, #0xf0000000
+	lsr r10, #28
+	
+	and r10, r1, #0x0f000000
+	lsr r10, #24
+	
+	and r10, r1, #0x00f00000
+	lsr r10, #20
+	
+	and r10, r1, #0x000f0000
+	lsr r10, #16
+	
+	and r10, r1, #0x0000f000
+	lsr r10, #12
+	
+	and r10, r1, #0x00000f00
+	lsr r10, #8
+	
+	and r10, r1, #0x000000f0
+	lsr r10, #4
+	
+	and r10, r1, #0x0000000f
+	
 	cmp r1, #0
 	beq end
-	ldr r11, =delay
-	ldr r11, [r11]
-atraso:
-	subs r11, #1
-	bne atraso
+
 	b subBCD
 
 end:
 	
 .data
 	value: .word 0x2220
-	delay: .word 0xfffff
