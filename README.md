@@ -6,8 +6,7 @@
         O sistema é composto por duas partes principais: 
     </p>
     <ul>
-		<li><p>Raspberry Pi Zero: Módulo responsável pela requisição de medição, usando Linguagem Assembly ;</p></li>
-		<li><p>FPGA</p></li>
+		<li><p>Raspberry Pi Zero: Usando Linguagem Assembly ;</p></li>
 	</ul>	
 </div>
 
@@ -30,7 +29,7 @@
         <li><a href="#equipe"> <b>Equipe de Desenvolvimento</b></li>
 		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
 		<li><a href="#como-executar"> <b>Como executar</b> </a> </li>
-        <li><a href="#funcionamento"> <b>Funcionamento do sensor (DHT11)</b> </a> </li>
+        <li><a href="#funcionamento"> </a> </li>
         <li><a href="#implementacao"> <b>Implementação</b> </a> </li>
         <li><a href="#testes"> <b>Exemplo de montagem</b> </a> </li>
         <li><a href="#conclusoes"> <b>Conclusões</b> </a> </li>
@@ -56,7 +55,6 @@
     </p>
  
 <div id="funcionamento">
-    <h1>Funcionamento do sensor (DHT11)</h1>
  /div>
 
 <div id="implementacao">
