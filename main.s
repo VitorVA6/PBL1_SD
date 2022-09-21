@@ -45,22 +45,23 @@
 .endm
 
 .macro setLcd lvlrs, lvldb7, lvldb6, lvldb5, lvldb4
-    setLvl e, #0
+    
     setLvl rs, #\lvlrs
-    setLvl e, #1
     setLvl db7, #\lvldb7
     setLvl db6, #\lvldb6
     setLvl db5, #\lvldb5
     setLvl db4, #\lvldb4
     setLvl e, #0
-
+    delay timespecnano150
+    setLvl e, #1
+    delay timespecnano150
+    setLvl e, #0
+    .ltorg
 .endm 
 
 .macro timer
 
-    setLvl e, #0
     setLvl rs, #1
-    setLvl e, #1
 	mov r9, #1
 	and r1, r9, r10
 	
@@ -129,7 +130,11 @@
     str r0, [r2]
 
     setLvl e, #0
-    .ltorg
+    delay timespecnano150
+    setLvl e, #1
+    delay timespecnano150
+    setLvl e, #0
+    
 .endm
 
 .macro delay time
@@ -173,37 +178,30 @@ mapping_lcd:
     setLcd 0, 0, 0, 1, 1
     delay timespecnano5
     
-    setLcd 0, 0, 0, 1, 1
-    delay timespecnano150
+    setLcd 0, 0, 0, 1, 1    
     
-    setLcd 0, 0, 0, 1, 1
-   
+    setLcd 0, 0, 0, 1, 1   
     setLcd 0, 0, 0, 1, 0
-    delay timespecnano150
+
 
     b 2f
     .ltorg 
 
 2:   
-    setLcd 0, 0, 0, 1, 0
+    setLcd 0, 0, 0, 1, 0   
+    setLcd 0, 0, 0, 0, 0
+    
    
     setLcd 0, 0, 0, 0, 0
-    delay timespecnano150
-   
-    setLcd 0, 0, 0, 0, 0
-
     setLcd 0, 1, 0, 0, 0
-    delay timespecnano150
 
-    setLcd 0, 0, 0, 0, 0
-   
+
+    setLcd 0, 0, 0, 0, 0   
     setLcd 0, 0, 0, 0, 1
-    delay timespecnano150
+
    
-    setLcd 0, 0, 0, 0, 0
-   
+    setLcd 0, 0, 0, 0, 0   
     setLcd 0, 0, 1, 1, 0
-    delay timespecnano150
 
     b 3f
     .ltorg 
@@ -212,20 +210,27 @@ mapping_lcd:
 
     setLcd 0, 0, 0, 0, 0
     setLcd 0, 1, 1, 1, 0
-    delay timespecnano150
 
     setLcd 0, 0, 0, 0, 0
     setLcd 0, 0, 1, 1, 0
-    delay timespecnano150
 
-    ldr r11, =value 
+
+    ldr r11, =value
     ldr r11, [r11]
+
+check:
+    mov r6, #1
+    lsl r6, #26
+    ldr r9, [r8, #reg_lvl]
+    and r9, r9, r6
+    cmp r9, #0
+    beq subBCD
+    b check
 	
 subBCD:
 
-    setLcd 0, 0, 0, 0, 0   
+    setLcd 0, 0, 0, 0, 0  
     setLcd 0, 0, 0, 0, 1
-    delay timespecnano150
 
 	mov r2, #1
 	mov r0, #0
@@ -264,42 +269,42 @@ subBCD_NoOverFlow:
 	and r10, r11, #0xf0000000
 	lsr r10, #28
     setLcd 1, 0, 0, 1, 1
-    timer
     delay timespecnano150
+    timer
 	and r10, r11, #0x0f000000
 	lsr r10, #24
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	and r10, r11, #0x00f00000
 	lsr r10, #20
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	and r10, r11, #0x000f0000
 	lsr r10, #16
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	and r10, r11, #0x0000f000
 	lsr r10, #12
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	and r10, r11, #0x00000f00
 	lsr r10, #8
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	and r10, r11, #0x000000f0
 	lsr r10, #4
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	and r10, r11, #0x0000000f
     setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
     timer
-	delay timespecnano150
 	cmp r11, #0
     delay time1s
 	beq end
