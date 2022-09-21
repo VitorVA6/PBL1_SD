@@ -173,10 +173,8 @@ mapping_lcd:
     setOut db5
     setOut db6
     setOut db7
-    b 1f
-    .ltorg 
 
-1:
+init_lcd:
     
     setLcd 0, 0, 0, 1, 1
     delay timespecnano5
@@ -185,31 +183,18 @@ mapping_lcd:
     
     setLcd 0, 0, 0, 1, 1   
     setLcd 0, 0, 0, 1, 0
-
-
-    b 2f
-    .ltorg 
-
-2:   
+ 
     setLcd 0, 0, 0, 1, 0   
     setLcd 0, 0, 0, 0, 0
-    
-   
+       
     setLcd 0, 0, 0, 0, 0
     setLcd 0, 1, 0, 0, 0
-
 
     setLcd 0, 0, 0, 0, 0   
     setLcd 0, 0, 0, 0, 1
 
-   
     setLcd 0, 0, 0, 0, 0   
     setLcd 0, 0, 1, 1, 0
-
-    b 3f
-    .ltorg 
-   
-3:
 
     setLcd 0, 0, 0, 0, 0
     setLcd 0, 1, 1, 1, 0
@@ -218,8 +203,42 @@ mapping_lcd:
     setLcd 0, 0, 1, 1, 0
 
 begin:
+
+    setLcd 0, 0, 0, 0, 0  
+    delay timespecnano150
+    setLcd 0, 0, 0, 0, 1
+    delay timespecnano150
+
+    setLcd 1, 0, 1, 0, 1  
+    delay timespecnano150
+    setLcd 1, 0, 0, 1, 1
+    delay timespecnano150
+
+    setLcd 1, 0, 1, 1, 1  
+    delay timespecnano150
+    setLcd 1, 0, 1, 0, 0
+    delay timespecnano150
+
+    setLcd 1, 0, 1, 1, 0 
+    delay timespecnano150
+    setLcd 1, 0, 0, 0, 1
+    delay timespecnano150
+
+    setLcd 1, 0, 1, 1, 1
+    delay timespecnano150
+    setLcd 1, 0, 0, 1, 0
+    delay timespecnano150
+
+    setLcd 1, 0, 1, 1, 1  
+    delay timespecnano150
+    setLcd 1, 0, 1, 0, 0
+    delay timespecnano150
+
     ldr r11, =value
     ldr r11, [r11]
+
+debounce:
+    delay time1s
 
 check:
     ldr r9, [r8, #reg_lvl]
@@ -231,7 +250,9 @@ check:
 subBCD:
 
     setLcd 0, 0, 0, 0, 0  
+    delay timespecnano150
     setLcd 0, 0, 0, 0, 1
+    delay timespecnano150
 
 	mov r2, #1
 	mov r0, #0
@@ -307,13 +328,14 @@ subBCD_NoOverFlow:
     delay timespecnano150
     timer
 	cmp r11, #0
-    delay time1s
 	beq end
 
+buttons:
+    delay time1s
     ldr r9, [r8, #reg_lvl]
-    and r9, r9, #buttond
+    and r9, r9, #buttonp
     cmp r9, #0
-    beq check
+    beq debounce
 
     ldr r9, [r8, #reg_lvl]
     and r9, r9, #buttonr
