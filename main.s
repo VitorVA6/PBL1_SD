@@ -9,6 +9,9 @@
 .equ O_SYNC, 00010000 
 .equ setregoffset, 28
 .equ clrregoffset, 40
+.equ buttonp, 0x4000000
+.equ buttond, 0x20
+.equ buttonr, 0x80000
 
 .global _start
 
@@ -214,15 +217,13 @@ mapping_lcd:
     setLcd 0, 0, 0, 0, 0
     setLcd 0, 0, 1, 1, 0
 
-
+begin:
     ldr r11, =value
     ldr r11, [r11]
 
 check:
-    mov r6, #1
-    lsl r6, #26
     ldr r9, [r8, #reg_lvl]
-    and r9, r9, r6
+    and r9, r9, #buttonp
     cmp r9, #0
     beq subBCD
     b check
@@ -309,6 +310,16 @@ subBCD_NoOverFlow:
     delay time1s
 	beq end
 
+    ldr r9, [r8, #reg_lvl]
+    and r9, r9, #buttond
+    cmp r9, #0
+    beq check
+
+    ldr r9, [r8, #reg_lvl]
+    and r9, r9, #buttonr
+    cmp r9, #0
+    beq begin
+
     b subBCD
 
 end:
@@ -325,7 +336,7 @@ timespecnano150: .word 0
                 .word 1500000
 time1s: .word 1
         .word 000000000
-value: .word 0x00000022
+value: .word 0x90204122
 rs:  .word 8
      .word 15
      .word 25
