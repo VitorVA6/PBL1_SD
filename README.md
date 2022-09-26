@@ -1,13 +1,9 @@
 <div id="inicio">
-    <h1>Titulo do problema</h1>
+    <h1>PROBLEMA 1 TEC 499 Sitemas Digitas- Temporizador e respectivos comandos no LCD em Assembly</h1>
 	<p align="justify"> 
-		Resumo tecnico.
-    <p>
-        O sistema é composto por duas partes principais: 
-    </p>
-    <ul>
-		<li><p>Raspberry Pi Zero: Usando Linguagem Assembly ;</p></li>
-	</ul>	
+		Para o problema 1 de Sistemas Digitais, foi solicitado o desenvolvimento de um aplicativo de temporização (timer) que apresente a contagem num
+		display LCD. O tempo inicial deveia ser configurado diretamente no código. Além disso,
+		o problema exigia que fossem usados 2 botões de controle: 1 para iniciar/parar a contagem e outro para reiniciar a partir do tempo definido.	
 </div>
 
 <div id="equipe">
@@ -31,7 +27,6 @@
 		<li><a href="#como-executar"> <b>Como executar</b> </a> </li>
         <li><a href="#funcionamento"> </a> </li>
         <li><a href="#implementacao"> <b>Implementação</b> </a> </li>
-        <li><a href="#testes"> <b>Exemplo de montagem</b> </a> </li>
         <li><a href="#conclusoes"> <b>Conclusões</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
