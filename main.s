@@ -14,6 +14,7 @@
 .equ buttonr, 0x80000
 
 .include "write.s"
+.include "clear.s"
 
 .global _start
 
@@ -91,10 +92,7 @@ init_lcd:
 
 begin:
 
-    setLcd 0, 0, 0, 0, 0  
-    delay timespecnano150
-    setLcd 0, 0, 0, 0, 1
-    delay timespecnano150
+    clear
 
     setLcd 1, 0, 1, 0, 1  
     delay timespecnano150
@@ -136,10 +134,7 @@ check:
 	
 subBCD:
 
-    setLcd 0, 0, 0, 0, 0  
-    delay timespecnano150
-    setLcd 0, 0, 0, 0, 1
-    delay timespecnano150
+    clear
 
 	mov r2, #1
 	mov r0, #0
