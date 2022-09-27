@@ -154,7 +154,7 @@
 	
     <h3>Ação dos botões só funciona após 1 segundo</h3>
     Como o delay de 1 segundo para o contador decrementar é gerado pela chamdada de sistema nanosleep, durante o intervalo de 1s gerado, o processador "dorme" e para de executar instruções, o que torna impossível a verificação dos botões de Pause e Restart durante esse período. Dessa forma, para pausar o usuário deve manter pressionado o botão que deseja por alguuns instantes, e o problema dessa abordagem é que caso o usuário mantenha pressionado por tempo demais, pode acabar pausando e despausando em seguida.
-    <h3>O programa não reinicia se estiver pausadao.</h3>
+
     
 </div>
 
