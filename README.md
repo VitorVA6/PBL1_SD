@@ -128,8 +128,7 @@
 	</p>
 	<div align="center">
 	<img src= https://user-images.githubusercontent.com/29680023/192601339-2c9e4239-b419-4903-bfc2-d6dd2e122204.jpeg width="300px" />
-	</div>
-	
+	</div>	
 	<p>
 	<h3> Pause da contagem</h3>
 	Outra interação esperada no nosso programa é a segunda interação com o botão de inicializar, como requerido no problema o mesmo botão de iniciar a contagem é o mesmo botão responsável por pausar, então após a contagem estar iniciada ao apertar o botão, será pausado o programa e o contador não decrementará mais. 
