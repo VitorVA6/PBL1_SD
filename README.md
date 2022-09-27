@@ -93,7 +93,7 @@
 		SVC = o modo do processador muda para Supervisor podendo, entre outras coisas, encerrar a chamada.
 		STR = Armazena um valor de registro na memória.
 		LDR = Carrega um valor de registro na memória.
-		.LTORG = Utilizada para que o montador possa coletar e montar literais em uma reserva de literais para que o processador não tente executar as constantes como instruções. Foi usado em nosso projeto por conta do LDR, pois ele deixa alguma dessas reservas de literais fora do intervalo esperado pelo assembly, o .LTORG serve para corrigir esse problema. 
+		.LTORG = Utilizada para que o montador possa coletar e montar ' literals' em uma 'Literal Pool' para que o processador não tente executar as constantes como instruções. Foi usado em nosso projeto por conta do LDR, pois ele deixa alguma dessas 'Literal Pool' fora do intervalo esperado pelo assembly, o .LTORG serve para corrigir esse problema. 
 </div>
 
 <div id="como-executar">
