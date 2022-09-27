@@ -129,8 +129,9 @@
 	</div>
  </div>
 
-<div id="Limitações e preferências da Solução Desenvolvida">
-    <h1>Ação dos botões só funciona após 1 segundo</h1> 
+<div id="limitacoes-solucao">
+    <h1>Limitações e preferências da Solução Desenvolvida</h1> 
+    <h3>Ação dos botões só funciona após 1 segundo</h3>
 </div>
 
 <div id="conclusoes">
