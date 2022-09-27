@@ -24,8 +24,6 @@
 		<li><a href="#inicio"> <b>Início</b></li>
         	<li><a href="#equipe"> <b>Equipe de Desenvolvimento</b></li>
 		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
-		<li><a href="#como-executar"></li>
-        	<li><a href="#funcionamento"> </a> </li>
         	<li><a href="#implementacao"> <b>Implementação</b> </a> </li>
         	<li><a href="#conclusoes"> <b>Conclusões</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
@@ -39,7 +37,8 @@
         <li>Raspberry Pi Zero: Ferramenta onde o sistema operacional em que o solução para o problema 1 foi feito e testado.</li>
 	<li>Visual Studio Code: IDE utilizada para alteração, confecção e manuseio do código em Assembly.</li>
 	<li>CPUlator: Software utilizado para fazer os testes do código fora do ambiente de laboratório.</li>
-	</ul>	
+	</ul>
+	<ul>
 	 <h2>ROADMAP, descrição das instruções usadas para a resolução do problema.</h2>
 	     <p>
 
@@ -83,16 +82,16 @@
 		STR = Armazena um valor de registro na memória.
 		LDR = Carrega um valor de registro na memória.
 
-
+		</ul>
 </div>
 
 <div id="como-executar">
     <h1>Como executar</h1>
     <p>
         Para executar, é necessário dispor do Raspberry Pi Zero, após possuí-lo deve-se:
-	1. Download do projeto presente neste repositório. 
-	2. Transfira os arquivos make, main e a biblioteca write para o Rapsberry Pi Zero.
-	3. Execute os seguintes comandos: (make) e (sudo ./_start)
+		<li> Download do projeto presente neste repositório. </li>
+		<li> Transfira os arquivos make, main e a biblioteca write para o Rapsberry Pi Zero. </li>
+		<li> Execute os seguintes comandos: (make) e (sudo ./_start) </li>
     </p>
  
 <div id="funcionamento">
