@@ -106,6 +106,9 @@
 	<h3> Inicialização </h3>
 	Ao iniciar o programa no Rapsberry Pi, sera exibido no display LCD do mesmo a palavra START, o programa então começa a fazer o processo de verificação de interação do usuario com o sistema atráves do botão de inicio da contagem.  
 	</p>
+	<div align="center">
+	<img src= https://user-images.githubusercontent.com/29680023/192542125-d63e99a4-9e55-4d8d-9168-3a3c53162683.jpeg width="300px" />
+	</div>
 	<p>
 	<h3> Temporizador </h3>
 	Após o botão de inicio de contagem ser acionado, o temporizador começara a decrementar no intervalo de 1 segundo, partindo de um valor pré definido em código que para a nossa implementação, terá como margem os números presentes entre 0 a 99.999.999. 
@@ -114,10 +117,16 @@
 	<h3> Pause da contagem</h3>
 	Outra interação esperada no nosso programa é a segunda interação com o botão de inicializar, como requerido no problema o mesmo botão de iniciar a contagem é o mesmo botão responsável por pausar, então após a contagem estar iniciada ao apertar o botão, será pausado o programa e o contador não decrementará mais. 
 	</p>
+	<div align="center">
+	<img src=https://user-images.githubusercontent.com/29680023/192538169-8c3def50-d3b1-4fe7-8b95-d52f7186835d.jpeg width="300px" />
+	</div>
 	<p>
 	<h3> Reinicialização </h3>
 	Por fim, a ultima interação disponível pelo usuário, é a do segundo botão, responsável pela reinicialização do programa. Quando pressionado, este botão ira resetar o sistema, voltando para o seu estágio de inicialização. Como decisão do projeto, optamos fazer com que só seja possível a reinicialização do programa se o mesmo estiver em contagem, não reinicializando assim se o mesmo estiver pausado. 
 	</p>
+	<div align="center">
+	<img src=https://user-images.githubusercontent.com/29680023/192541073-a17bc61a-d9f5-45d2-a51a-419236c1760c.jpeg width="300px" />
+	</div>
  </div>
 
 <div id="implementacao">
