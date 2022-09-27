@@ -11,7 +11,7 @@
 		<li><a href="#inicio"> <b>Início</b></li>
         	<li><a href="#equipe"> <b>Equipe de Desenvolvimento</b></li>
 		<li><a href="#recursos-utilizados"> <b>Recursos Utilizados</b> </a></li>
-        	<li><a href="#implementacao"> <b>Implementação</b> </a> </li>
+        	<li><a href="#resultados-obtidos"> <b>Resultados Obtidos</b> </a> </li>
         	<li><a href="#conclusoes"> <b>Conclusões</b> </a> </li>
 		<li><a href="#anexos"> <b>Anexos</b> </a></li>
 	</ul>	
@@ -97,7 +97,7 @@
     </p>
 </div>
  
-<div id="funcionamento e testes realizados">
+<div id="resultados-obtidos">
 <h1>Resultados Obtidos</h1>
 	<p> 
 	As requisições do projeto foram cumpridas com exito por nossa equipe, sendo realizadas de forma satisfatória e testadas com o devido rigor. Nesta seção iremos detalhar como funciona o nosso projeto e quais testes foram necessários para termos um resultado competente aos nossos estudos. 
@@ -129,8 +129,8 @@
 	</div>
  </div>
 
-<div id="implementacao">
-    <h1>Breve descrição da implementação</h1> 
+<div id="Limitações e preferências da Solução Desenvolvida">
+    <h1>Ação dos botões só funciona após 1 segundo</h1> 
 </div>
 
 <div id="conclusoes">
