@@ -20,7 +20,7 @@
 <div id="equipe">
     <h1>Equipe de Desenvolvimento</h1>
     <ul>
-		<li><a href="https://github.com/VitorVA6"> Vitor </li>
+		<li><a href="https://github.com/VitorVA6"> Vitor Vaz Andrade </li>
 		<li><a href="https://github.com/ViniciusDJM"> Vinícius Dias de Jesus Maciel </a></li>
 	</ul>
     <h1>Tutor</h1>
