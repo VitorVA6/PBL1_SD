@@ -62,8 +62,6 @@
 
 		.macro e .endm = Uma macro é uma sequência de instruções, atribuída por um nome e pode ser usada em qualquer lugar do programa. Já o .endm é o que indica o fim de uma macro.
 
-		.LTORG = .
-
 		.data = Usada para declarar dados ou constantes inicializados, estes dados  não mudam em tempo de execução.
 
 		.word = Define o armazenamento para inteiros de 32 bits
@@ -95,12 +93,13 @@
 		SVC = o modo do processador muda para Supervisor podendo, entre outras coisas, encerrar a chamada.
 		STR = Armazena um valor de registro na memória.
 		LDR = Carrega um valor de registro na memória.
+		.LTORG = Utilizada para que o montador possa coletar e montar literais em uma reserva de literais para que o processador não tente executar as constantes como instruções. Foi usado em nosso projeto por conta do LDR, pois ele deixa alguma dessas reservas de literais fora do intervalo esperado pelo assembly, o .LTORG serve para corrigir esse problema. 
 </div>
 
 <div id="como-executar">
     <h1>Como executar</h1>
     <p>
-        Para executar, é necessário dispor do Raspberry Pi Zero, após possuí-lo deve-se:
+        Para executar, é necessário dispor do Raspberry Pi Zero em conjunto com o display LCD e 2 botões na pinagem especificada em código, após possuí-lo deve-se:
 		<li> Download do projeto presente neste repositório, usando o comando: git clone <repository-url>. </li>
 		<li> Transfira os arquivos make, main e a biblioteca write para o Rapsberry Pi Zero. </li>
 		<li> Execute o seguinte comando no diretorio onde o projeto estara salvo em seu computador: make </li>
@@ -111,35 +110,35 @@
 <div id="resultados-obtidos">
 <h1>Resultados Obtidos</h1>
 	<p> 
-	As requisições do projeto foram cumpridas com exito por nossa equipe, sendo realizadas de forma satisfatória e testadas com o devido rigor. Nesta seção iremos detalhar como funciona o nosso projeto e quais testes foram necessários para termos um resultado competente aos nossos estudos. 
+	As requisições do projeto foram cumpridas com êxito por nossa equipe, sendo realizadas de forma satisfatória e testadas com o devido rigor. Nesta seção iremos detalhar como funciona o nosso projeto e quais testes foram necessários para termos um resultado competente aos nossos estudos. 
 	</p>
 	<p>
 	<h3> Inicialização </h3>
-	Ao iniciar o programa no Rapsberry Pi, sera exibido no display LCD do mesmo a palavra START, o programa então começa a fazer o processo de verificação de interação do usuario com o sistema atráves do botão de inicio da contagem.  
-	Como este problema 1 a solução foi feita por etapas, houveram distintos testes ao decorrer do problema para esse objetivo, o primeiro teste foi de garantir que o Display do LCD fosse realmente inicializado, ao nosso primeiro contato bem sucedido com o mesmo conseguiamos apenas faze-lo "piscar", após alguns períodos de testes e avanços no estudo conseguimos a inicialização onde avançamos inserindo letras soltas para o Display até que finalmente chegassemos no Start que usamos hoje e pudessemos avançar nos outros requisitos do problema.
+	Ao iniciar o programa no Rapsberry Pi, será exibido no display LCD do mesmo a palavra START, o programa então começa a fazer o processo de verificação de interação do usuário com o sistema através do botão de início da contagem.  
+	Como este problema 1 a solução foi feita por etapas, houveram distintos testes ao decorrer do problema para esse objetivo, o primeiro teste foi de garantir que o Display do LCD fosse realmente inicializado, ao nosso primeiro contato bem sucedido com o mesmo tínhamos conseguido apenas fazê-lo "piscar", após alguns períodos de testes e avanços no estudo conseguimos a inicialização onde avançamos inserindo letras soltas para o Display até que finalmente chegássemos no Start que usamos hoje e pudéssemos avançar nos outros requisitos do problema.
 	</p>
 	<div align="center">
 	<img src= https://user-images.githubusercontent.com/29680023/192542125-d63e99a4-9e55-4d8d-9168-3a3c53162683.jpeg width="300px" />
 	</div>
 	<p>
 	<h3> Temporizador </h3>
-	Após o botão de inicio de contagem ser acionado, o temporizador começara a decrementar no intervalo de 1 segundo, partindo de um valor pré definido em código que para a nossa implementação, terá como margem os números presentes entre 0 a 99.999.999. 
-	Como teste deste complemento, colocamos diversos valores diferentes de 1 para decrementar o valor total, por usarmos um valor de 8 dígitos, preferimos testar todas as casas decímais para garantir a sua plena funcionalidade. Após checarmos que todas as casas e valores eram correspondentes as nossas expectatívas interpretamos como concluido esse objetivo. 
+	Após o botão de início de contagem ser acionado, o temporizador começa a decrementar no intervalo de 1 segundo, partindo de um valor pré definido em código que para a nossa implementação, terá como margem os números presentes entre 0 a 99.999.999. 
+	Como teste deste complemento, colocamos diversos valores diferentes de 1 para decrementar o valor total, por usarmos um valor de 8 dígitos, preferimos testar todas as casas decimais para garantir a sua plena funcionalidade. Após checarmos que todas as casas e valores eram correspondentes às nossas expectativas, interpretamos como concluído esse objetivo. 
 	</p>
 	<div align="center">
 	<img src= https://user-images.githubusercontent.com/29680023/192601339-2c9e4239-b419-4903-bfc2-d6dd2e122204.jpeg width="300px" />
 	</div>	
 	<p>
 	<h3> Pause da contagem</h3>
-	Outra interação esperada no nosso programa é a segunda interação com o botão de inicializar, como requerido no problema o mesmo botão de iniciar a contagem é o mesmo botão responsável por pausar, então após a contagem estar iniciada ao apertar o botão, será pausado o programa e o contador não decrementará mais. 
-	Para a interação com o pause do sistema, primeiro decidimos usar um botão isolado para termos mais segurança no teste, após a confirmação de que o pause estava funcionando perfeitamente, ou seja parando o tempo da contagem até que o botão de inicio fosse pressionado, então finalmente juntamos a pausa da contagem ao mesmo botão de iniciar o contador. Apesar de termos escrito mensagens de que o sistema estava pausado ou despausado para nos auxiliar em testes, optamos por tira-los para melhorar nossa visualização na entrega final do produto. 
+	Outra interação esperada no nosso programa é a segunda interação com o botão de inicialização, como requerido no problema o mesmo botão de iniciar a contagem é o mesmo botão responsável por pausar, então após a contagem estar iniciada ao apertar o botão, será pausado o programa e o contador não decrementará mais. 
+	Para a interação com o pause do sistema, primeiro decidimos usar um botão isolado para termos mais segurança no teste, após a confirmação de que o pause estava funcionando perfeitamente, ou seja parando o tempo da contagem até que o botão de início fosse pressionado, então finalmente juntamos a pausa da contagem ao mesmo botão de iniciar o contador. Apesar de termos escrito mensagens de que o sistema estava pausado ou despausado para nos auxiliar em testes, optamos por tirá-los para melhorar nossa visualização na entrega final do produto. 
 	</p>
 	<div align="center">
 	<img src=https://user-images.githubusercontent.com/29680023/192538169-8c3def50-d3b1-4fe7-8b95-d52f7186835d.jpeg width="300px" />
 	</div>
 	<p>
 	<h3> Reinicialização </h3>
-	Por fim, a ultima interação disponível pelo usuário, é a do segundo botão, responsável pela reinicialização do programa. Quando pressionado, este botão ira resetar o sistema, voltando para o seu estágio de inicialização. Como decisão do projeto, optamos fazer com que só seja possível a reinicialização do programa se o mesmo estiver em contagem, não reinicializando assim se o mesmo estiver pausado. 
+	Por fim, a última interação disponível pelo usuário, é a do segundo botão, responsável pela reinicialização do programa. Quando pressionado, este botão irá resetar o sistema, voltando para o seu estágio de inicialização. Como decisão do projeto, optamos fazer com que só seja possível a reinicialização do programa se o mesmo estiver em contagem, não reinicializando assim se o mesmo estiver pausado. 
 	Os testes com o botão responsável pela reinicialização foram mais simples, apenas nos certificamos de que ao ser apertado, a contagem voltaria ao valor definido no código junto a mensagem de Start presente na inicialização da solução.
 	</p>
 	<div align="center">
@@ -150,9 +149,9 @@
 <div id="limitacoes-solucao">
     <h1>Limitações e preferências da Solução Desenvolvida</h1> 
     <h3>Contador limitado a apenas 8 digitos</h3>
-    Uma das estrátegias em nossa solução para realizar a contagem de 8 digitos foi usarmos o BCD, que é uma forma de conseguirmos realizar a contagem de números maiores que 99. Porém o BCD utiliza 4 bits para representar 1 dígito, já que a arquitetura usada foi de 32 bits, conseguimos apenas utilizar 8 dígitos em um registrador. Uma solução para este problema seria utilizar de outro registrador para armazenar outros 8 dígitos, fazendo assim com que esse contador tivesse 16 dígitos, porém, isso não foi possível pois já tinhamos usado todos os registradores disponíveis, o que acabou atrapalhando uma implementação mais poderosa da nossa solução. 
+    Uma das estratégias em nossa solução para realizar a contagem de 8 dígitos foi usarmos o BCD, que é uma forma de conseguirmos realizar a contagem de números maiores que 99. Porém o BCD utiliza 4 bits para representar 1 dígito, já que a arquitetura usada foi de 32 bits, conseguimos apenas utilizar 8 dígitos em um registrador. Uma solução para este problema seria utilizar de outro registrador para armazenar outros 8 dígitos, fazendo assim com que esse contador tivesse 16 dígitos, porém, isso não foi possível pois já tínhamos usado todos os registradores disponíveis, o que acabou atrapalhando uma implementação mais poderosa da nossa solução. 
     <h3>Ação dos botões só funciona após 1 segundo</h3>
-    Como o delay de 1 segundo para o contador decrementar é gerado pela chamdada de sistema nanosleep, durante o intervalo de 1s gerado, o processador "dorme" e para de executar instruções, o que torna impossível a verificação dos botões de Pause e Restart durante esse período. Dessa forma, para pausar o usuário deve manter pressionado o botão que deseja por alguuns instantes, e o problema dessa abordagem é que caso o usuário mantenha pressionado por tempo demais, pode acabar pausando e despausando em seguida.
+    Como o delay de 1 segundo para o contador decrementar é gerado pela chamada de sistema nanosleep, durante o intervalo de 1s gerado, o processador "dorme" e para de executar instruções, o que torna impossível a verificação dos botões de Pause e Restart durante esse período. Dessa forma, para pausar o usuário deve manter pressionado o botão que deseja por alguns instantes, e o problema dessa abordagem é que caso o usuário mantenha pressionado por tempo demais, pode acabar pausando e despausando em seguida.
 
 </div>
 
