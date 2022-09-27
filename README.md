@@ -151,10 +151,9 @@
     <h1>Limitações e preferências da Solução Desenvolvida</h1> 
     <h3>Contador limitado a apenas 8 digitos</h3>
     Uma das estrátegias em nossa solução para realizar a contagem de 8 digitos foi usarmos o BCD, que é uma forma de conseguirmos realizar a contagem de números maiores que 99. Porém o BCD utiliza 4 bits para representar 1 dígito, já que a arquitetura usada foi de 32 bits, conseguimos apenas utilizar 8 dígitos em um registrador. Uma solução para este problema seria utilizar de outro registrador para armazenar outros 8 dígitos, fazendo assim com que esse contador tivesse 16 dígitos, porém, isso não foi possível pois já tinhamos usado todos os registradores disponíveis, o que acabou atrapalhando uma implementação mais poderosa da nossa solução. 
-    <h3>Botões mudam de estado se pressionados por muito tempo</h3>
-    
+	
     <h3>Ação dos botões só funciona após 1 segundo</h3>
-    
+    Como o delay de 1 segundo para o contador decrementar é gerado pela chamdada de sistema nanosleep, durante o intervalo de 1s gerado, o processador "dorme" e para de executar instruções, o que torna impossível a verificação dos botões de Pause e Restart durante esse período. Dessa forma, para pausar o usuário deve manter pressionado o botão que deseja por alguuns instantes, e o problema dessa abordagem é que caso o usuário mantenha pressionado por tempo demais, pode acabar pausando e despausando em seguida.
     <h3>O programa não reinicia se estiver pausadao.</h3>
     
 </div>
