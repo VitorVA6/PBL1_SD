@@ -47,9 +47,9 @@
 	</ul>
 	<ul>
 	<p>
-		Chip Broadcom BCM2835, com processador ARM1176JZF-S 1GHz single core;
-		O processador conta com arquitetura ARMv6.
-		512MB de memória LPDDR2 SDRAM;
+		<li>Chip Broadcom BCM2835, com processador ARM1176JZF-S 1GHz single core;</li>
+		<li>O processador conta com arquitetura ARMv6.</li>
+		<li>512MB de memória LPDDR2 SDRAM;</li>
 	<p>
 	</ul>
 	<ul>
@@ -102,7 +102,7 @@
         Para executar, é necessário dispor do Raspberry Pi Zero em conjunto com o display LCD e 2 botões na pinagem especificada em código, após possuí-lo deve-se:
 		<li> Download do projeto presente neste repositório, usando o comando: git clone <repository-url>. </li>
 		<li> Transfira os arquivos make, main e a biblioteca write para o Rapsberry Pi Zero. </li>
-		<li> Execute o seguinte comando no diretorio onde o projeto estara salvo em seu computador: make </li>
+		<li> Execute o seguinte comando no diretório onde o projeto estará salvo em seu computador: make </li>
 		<li> Por fim inicialize no terminal o programa com o comando: sudo ./main </li>
     </p>
 </div>
