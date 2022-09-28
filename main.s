@@ -16,6 +16,7 @@
 
 .include "write.s"      @Inclusão do arquivo/biblioteca com o comando de escrever caracter no display
 .include "clear.s"      @Inclusão do arquivo/biblioteca com o comando de limpar display
+.include "cursor.s"      @Inclusão do arquivo/biblioteca com os comandos de mover cursor para esquerda e para direita
 
 .global _start
 

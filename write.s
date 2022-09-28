@@ -34,7 +34,7 @@
 
 @Macro que realiza a metade de uma operação de escrita na LCD (Envia 4 dos 8 bits do ASCII)
 @A macro verifica os 4 bits de um número contido em R10 e os envia para a LCD
-.macro timer
+.macro digit
 
     setLvl rs, #1       @Define o nível lógico "1" de RS
 	mov r9, #1          @Move 1 para R9
@@ -124,5 +124,5 @@
 .macro write
     setLcd 1, 0, 0, 1, 1  
     delay timespecnano150
-    timer
+    digit
 .endm
